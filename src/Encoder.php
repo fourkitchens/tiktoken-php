@@ -124,7 +124,16 @@ final class Encoder implements Stringable
             return '';
         }
 
-        return implode(array_map($this->vocab->getToken(...), $tokens));
+        return implode($this->decodeList($tokens));
+    }
+
+    /**
+     * @param array<int> $tokens
+     * @return list<string>
+     */
+    public function decodeList(array $tokens): array
+    {
+        return array_map($this->vocab->getToken(...), $tokens);
     }
 
     /**
